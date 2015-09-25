@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- '0.12'
+branches:
+  only:
+  - master
+services:
+- mysql
+before_script:
+- mysql --user=root --execute='CREATE DATABASE IF NOT EXISTS test;'
+- mysql --user=root --execute='GRANT ALL ON test.* TO test@localhost;'
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: mvila@3base.com
+  api_key:
+    secure: HdN8luyURtxEIphZ/lDkaSNhkHkfneJMyFFH7NeGiuQjApt3GmK5mOI/RpWCe50HCXkwmz9oUhxrlLiznHjBK0y0dcQKTZPVzrPMGiUs2xlpJE7+thZPV3uhGWQCsUS7yhyqDNFVcQppXIVBnnYeigAPjtgy0/YkWvUFPm3t+c5D2HeIqxJp4JvVpNu2TTZ3zxBAK88Gnt0kdLHlaE6wmOxWmYj4rOvB6logT4FX4eGtCtluQ8kGwbnJAzRTnX+aoqBEdm4EKPFxo74/ZtZWDBrbE09FX9779kYcZNyB125E7oGS+BIkRK/Q9RG/CbZGZyab1WaeN/IuO6iHKmMUhIJCa6cDH2tjGuZkeYpdEj4IJckn3ffp+NzpH8H8pGYyR3EbglDFM7qeAcrr48A7c/uNWQ1k5bDqphScueCB1CGbtzjNATGjATSfRDA5K2xbobVsWoCnxgMPyAgniUwfDArzBLBr9+tJ+hWTHqWh2kL4I4lSDpwhvoQAfiXBbWAiGBI8856dFvgJbJLgv+4nKaas5Ye/8io2FR749PjM/i3H8w/9ujmIxmkESMV/lbwBQa3LEMa+LKTzr81uawPQr18DxFwDBJQb0bB9Btn3VeaWvN+gi7g1O3oYyICLBJ3E/K1UhKxRw0JpVXjEWwHc9VG5OVGLTb3bIOGOd/G11mA=
+  skip_cleanup: true
+notifications:
+  email: false
+  slack:
+    secure: jsAYmfbTkPsZ4j6ZkBn/uah3O9/RMuJHCyAnpQpNa3FVv/r7aq6Y6lbeEMW7+w0IejIgizSn8RqaxjJ1XgHsvP+No7BFmdQ4rFH+Imb09RKA32GCw2i24z1vLD47wIEozHfCjNDr1+7mQ9lxLbFtOnGuEV5haTN65Ycrd5FUhnc7JJfnhpO7jG64EhqvcQbrzxYRccid8tLO35RuTCJXeXvYzSFC3dN1k3H6+kQjtdkWuMEQN3gVqLlgLfUFSd5xkWlZGwK5fj/OJihmOyOZyfbDh9JSorv3YSlt3PohvdPeyhSSRgYGbW8etmpQMbKSXPdIssFtgLONjGpD/HnugPaAlLn/RhXHu2fZj6B3cRaQTjkVozcnyl4vgyoLjSAKD8a/zxxDDe7bv1eSvs0vyXchI8nte4Q0Cmlwn1gBWep8jz5W8ZpKIqIXVEznfcCoN24h2u9ZtwXdZznftWfwP3ffvuV0yuEd7lMhz0wUkJH6q5kAv4MFVvdvZ6gPjIWASOwMnSOCZpfZ6SCu5aOAOPLTVVi5ilQekPqB7d1pizU7Tg8j/Sf4XAmtHmHscj2MgNIjHEMFlhnbAha+/zWCsx6iJ67Qjdj2aYqT5+3sf+EWJ/v+ryuWEuBbWxiaqAZQbYjMuiTixNlTOtbFKP7ZdrRE2qX2HIab20dPG1gZb9w=
+sudo: false

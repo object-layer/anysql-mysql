@@ -52,6 +52,20 @@ export class AnySQLMySQL {
   end() {
     return this.pool.end();
   }
+
+  // === Helpers ===
+
+  async createTable(name, definition, options = {}) {
+    let errorIfExists = options.errorIfExists != null ? options.errorIfExists : true;
+
+    let sql = 'CREATE TABLE ';
+    if (!errorIfExists) sql += 'IF NOT EXISTS ';
+    sql += '`' + name + '` ';
+    sql += '(' + definition + ') ';
+    sql += 'ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+
+    await this.query(sql);
+  }
 }
 
 export default AnySQLMySQL;

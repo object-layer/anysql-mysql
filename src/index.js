@@ -49,7 +49,7 @@ export class AnySQLMySQL {
     }
   }
 
-  end() {
+  close() {
     return this.pool.end();
   }
 

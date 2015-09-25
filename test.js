@@ -74,6 +74,6 @@ describe('anysql-mysql', function() {
   });
 
   after(async function() {
-    await mysql.end();
+    await mysql.close();
   });
 });

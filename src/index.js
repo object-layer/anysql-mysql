@@ -55,9 +55,7 @@ export class AnySQLMySQL {
 
   // === Helpers ===
 
-  async createTable(name, definition, options = {}) {
-    let errorIfExists = options.errorIfExists != null ? options.errorIfExists : true;
-
+  async createTable(name, definition, { errorIfExists = true } = {}) {
     let sql = 'CREATE TABLE ';
     if (!errorIfExists) sql += 'IF NOT EXISTS ';
     sql += '`' + name + '` ';

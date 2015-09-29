@@ -63,6 +63,7 @@ describe('anysql-mysql', function() {
         });
       });
       assert.instanceOf(err, Error);
+      assert.equal(err.message, 'something is wrong');
       rows = await mysql.query('SELECT * FROM people WHERE name=?', 'Pierre Durand');
       person = rows[0];
       assert.deepEqual(person, { name: 'Pierre Durand', age: 23 });

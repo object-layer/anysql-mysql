@@ -4,6 +4,9 @@ import mysql from 'mysql-as-promised';
 import sleep from 'sleep-promise';
 
 export class AnySQLMySQL {
+  static supportTruncatedKey = true;
+  static tableCreationOptions = 'ENGINE=InnoDB DEFAULT CHARSET=utf8';
+
   constructor(url) {
     this.pool = mysql.createPool(url);
     this.pool.on('connection', function(connection) {
@@ -51,18 +54,6 @@ export class AnySQLMySQL {
 
   close() {
     return this.pool.end();
-  }
-
-  // === Helpers ===
-
-  async createTable(name, definition, { errorIfExists = true } = {}) {
-    let sql = 'CREATE TABLE ';
-    if (!errorIfExists) sql += 'IF NOT EXISTS ';
-    sql += '`' + name + '` ';
-    sql += '(' + definition + ') ';
-    sql += 'ENGINE=InnoDB DEFAULT CHARSET=utf8;';
-
-    await this.query(sql);
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "anysql-mysql",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "MySQL implementation of the AnySQL API",
   "author": "Manuel Vila <mvila@3base.com>",
   "license": "MIT",
